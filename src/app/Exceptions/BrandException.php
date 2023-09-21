@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Common\StandardErrorCode;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -21,8 +22,8 @@ class BrandException extends Exception
     {
         return response()->json([
             'success' => 0,
-            'error_code' => '1000',
-            'msg' => 'Brand not found',
+            'error_code' => StandardErrorCode::NOT_FOUND,
+            'msg' => 'Brand not found.',
         ], 400);
     }
 }

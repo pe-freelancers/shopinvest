@@ -13,6 +13,7 @@ class ImageService
 
         foreach ($files as $file) {
             $fileName = time() . '.' . $file->getClientOriginalExtension();
+            // Save file to local
             $file->move($path, $fileName);
 
             $image = [

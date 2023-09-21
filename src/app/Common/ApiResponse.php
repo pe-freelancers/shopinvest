@@ -12,6 +12,11 @@ interface StandardCode {
     const HTTP_SERVER_ERROR = 500;
 }
 
+
+interface StandardErrorCode {
+    const NOT_FOUND = 1000;
+
+}
 trait ApiResponse
 {
     protected function returnSuccess($data = null)

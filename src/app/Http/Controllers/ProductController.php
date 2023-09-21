@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\StandardErrorCode;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Services\ImageService;
@@ -13,12 +14,12 @@ class ProductController extends Controller
 
     private $productService;
     private $imageService;
-    public function __construct(ProductService $productService,
-        ImageService $imageService)
-    {
+    public function __construct(
+        ProductService $productService,
+        ImageService $imageService
+    ) {
         $this->productService = $productService;
         $this->imageService = $imageService;
-
     }
 
     /**
@@ -39,7 +40,7 @@ class ProductController extends Controller
         $product = $this->productService->create($params);
 
         // Upload file
-        if ($request->hasfile('files')){
+        if ($request->hasfile('files')) {
             $files = $request->file('files');
             $product->images = $this->imageService->create($product->id, $files);
         }
@@ -65,7 +66,7 @@ class ProductController extends Controller
 
         $product = $this->productService->update($id, $params);
 
-        if ($request->hasfile('files')){
+        if ($request->hasfile('files')) {
             $files = $request->file('files');
             $product->images = $this->imageService->create($product->id, $files);
         }
@@ -97,7 +98,7 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (!$product) {
-            return $this->returnError(2000, 'Product not found.');
+            return $this->returnError(StandardErrorCode::NOT_FOUND, 'Product not found.');
         }
 
         $product->brand;

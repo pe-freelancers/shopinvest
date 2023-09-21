@@ -42,7 +42,8 @@ class ProductService
         return true;
     }
 
-    private function checkExistBrand(int $brand_id) {
+    private function checkExistBrand(int $brand_id)
+    {
         if ($brand_id) {
             $brand = Brand::find($brand_id);
             if (!$brand) {
