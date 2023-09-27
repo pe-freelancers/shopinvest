@@ -15,13 +15,14 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::group([
     'middleware' => 'auth:api',
     'prefix' => 'product'
 ], function () {
-    Route::post('/create', [ProductController::class, 'create']);
-    Route::post('/update/{id}', [ProductController::class, 'update']);
-    Route::delete('/delete/{id}', [ProductController::class, 'delete']);
-    Route::get('/{id}', [ProductController::class, 'get']);
+    Route::post('/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/{id}', [ProductController::class, 'get'])->name('product.get');
 });

@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'price' => 'integer',
+            'price' => 'numeric',
             'brand_id' => 'nullable|integer',
             'description' => 'nullable|string',
             'files.*' => 'mimes:jpeg,png,jpg|max:2048'
